@@ -124,15 +124,22 @@ def read_img(
     im = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     height = im.shape[0]
     width = im.shape[1]
-    factor = print_width / width
-    resized = cv2.resize(
-        im,
-        (
-            print_width,
-            int(height * factor)
-        ),
-        interpolation=cv2.INTER_AREA)
 
+    im = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    height = im.shape[0]
+    width = im.shape[1]
+
+    if width > print_width:
+        resized = cv2.resize(
+            im,
+            (
+                print_width,
+                height
+            ),
+            interpolation=cv2.INTER_AREA)
+    else:
+        resized = im  
+        
     if img_binarization_algo == 'atkinson':
         logger.info('⏳ Applying Atkinson dithering to image...')
         resized = atkinson_dither(resized)
