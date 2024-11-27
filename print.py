@@ -32,7 +32,7 @@ def parse_args():
                           'The printer\'s Bluetooth Low Energy (BLE) address '
                           '(MAC address on Linux; UUID on macOS) '
                           'or advertisement name (e.g.: "GT01", "GB02", "GB03"). '
-                          'If omitted, the the script will try to auto discover '
+                          'If omitted, the script will try to auto discover '
                           'the printer based on its advertised BLE services.'
                       ))
     args.add_argument('-e', '--energy', type=lambda h: int(h.removeprefix("0x"), 16),
