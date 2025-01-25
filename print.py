@@ -38,6 +38,9 @@ def parse_args():
     args.add_argument('-e', '--energy', type=lambda h: int(h.removeprefix("0x"), 16),
                       help="Thermal energy. Between 0x0000 (light) and 0xffff (darker, default).",
                       default="0xffff")
+    args.add_argument('--no-resize', action='store_true',
+                      help='Disable automatic image resizing')
+    
     return args.parse_args()
 
 
@@ -64,6 +67,7 @@ def main():
             args.filename,
             PRINT_WIDTH,
             args.img_binarization_algo,
+            no_resize=args.no_resize
         )
         if args.show_preview:
             show_preview(bin_img)
